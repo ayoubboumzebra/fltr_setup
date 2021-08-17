@@ -14,6 +14,7 @@ class PostService {
 
   Future<Map<String, dynamic>> getPostss() async {
     await Future.delayed(Duration(milliseconds: 500));
+
     return {"name": "Amineee", "age": 20};
   }
 }

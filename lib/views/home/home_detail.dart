@@ -9,23 +9,28 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<Map<String, dynamic>>(
-        future: getIt<PostService2>().getPostss(),
-        builder: (BuildContext context,
-            AsyncSnapshot<Map<String, dynamic>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          else
-            return Container(
-              child: Center(
-                child: Text(
-                  S.of(context).welcome + ' ' + snapshot.data!['name'],
-                ),
-              ),
-            );
-        },
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FutureBuilder<Map<String, dynamic>>(
+            future: getIt<PostService2>().getPostss(),
+            builder: (BuildContext context,
+                AsyncSnapshot<Map<String, dynamic>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting)
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              else
+                return Container(
+                  child: Center(
+                    child: Text(
+                      S.of(context).welcome + ' ' + snapshot.data!['name'],
+                    ),
+                  ),
+                );
+            },
+          ),
+        ],
       ),
     );
   }

@@ -1,4 +1,6 @@
+import 'package:fltr_setup/locator.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @lazySingleton
 class PostService2 {
@@ -14,6 +16,14 @@ class PostService2 {
 
   Future<Map<String, dynamic>> getPostss() async {
     await Future.delayed(Duration(milliseconds: 500));
-    return {"name": "Amineee", "age": 20};
+    await getIt<SharedPreferences>().setString('name', 'Ayoub');
+    var a = getIt<SharedPreferences>().getString('name');
+    return {"name": a, "age": 20};
+  }
+
+  Future<String> getSPData() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setString('name', 'Ayoub');
+    return sp.getString('name')!;
   }
 }
