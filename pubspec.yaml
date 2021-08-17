@@ -25,10 +25,14 @@ dependencies:
     sdk: flutter
   flutter_localizations: 
     sdk: flutter    
+  # add injectable to your dependencies  
+  get_it:
+  injectable:
 
   # adapting screen and font size on different screen sizes!
   flutter_screenutil:
   intl: ^0.17.0
+  http: ^0.13.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -38,6 +42,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # add the generator to your dev_dependencies  
+  injectable_generator:  
+  # add build runner if not already added  
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

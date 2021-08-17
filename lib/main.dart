@@ -1,11 +1,13 @@
 import 'package:fltr_setup/core/common/app_config.dart';
 import 'package:fltr_setup/generated/l10n.dart';
+import 'package:fltr_setup/locator.dart';
 import 'package:fltr_setup/route.dart' as appRoute;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
+  configureDependencies();
   runApp(MyApp());
 }
 

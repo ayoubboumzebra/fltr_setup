@@ -1,4 +1,7 @@
 import 'package:fltr_setup/generated/l10n.dart';
+import 'package:fltr_setup/locator.dart';
+import 'package:fltr_setup/service/post/post_service.dart';
+import 'package:fltr_setup/views/home/home_detail.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,8 +10,40 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Center(child: Text(S.of(context).welcome)),
+      body: FutureBuilder<Map<String, dynamic>>(
+        future: getIt<PostService>().getPosts(),
+        builder: (BuildContext context,
+            AsyncSnapshot<Map<String, dynamic>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          else
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  child: Center(
+                    child: Text(
+                      S.of(context).welcome + ' ' + snapshot.data!['name'],
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const HomeDetailPage(),
+                      ),
+                    );
+                  },
+                  child: Text('Home detail'),
+                ),
+              ],
+            );
+        },
       ),
     );
   }
